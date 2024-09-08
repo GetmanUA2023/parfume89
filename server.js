@@ -15,7 +15,7 @@ app.use(express.static('public'));
 app.post('/order', (req, res) => {
             const { name, phone, novaPoshta, cart } = req.body;
 
-            // Send order to Telegram
+            // Create the message to be sent
             const message = `Замовлення:
     Ім'я: ${name}
     Телефон: ${phone}
@@ -24,6 +24,7 @@ app.post('/order', (req, res) => {
     ${cart.map(item => `- ${item.name}: ${item.price} грн`).join('\n')}
     Загальна вартість: ${cart.reduce((sum, item) => sum + item.price, 0)} грн`;
     
+    // Send the message to Telegram
     axios.post(`https://api.telegram.org/bot${telegramToken}/sendMessage`, {
         chat_id: chatId,
         text: message
