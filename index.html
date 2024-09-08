@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Парфумерія</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+        
+        header {
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+        
+        header h1 {
+            font-size: 2.5em;
+            margin: 0;
+        }
+        
+        header p {
+            font-size: 1.1em;
+        }
+        
+        nav {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+        
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+        
+        nav ul li {
+            margin: 0 10px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1em;
+        }
+        
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+        
+        .section {
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        #products {
+            background-image: url('images/perfume-bg.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .album {
+            margin: 20px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .album-header {
+            background-color: #f4f4f4;
+            padding: 10px;
+            font-size: 1.2em;
+            cursor: pointer;
+            border-radius: 5px 5px 0 0;
+        }
+        
+        .sub-album {
+            display: none;
+            padding: 10px;
+        }
+        
+        .product-card {
+            display: flex;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            background-color: #fff;
+            border-radius: 5px;
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+        
+        .product-card img {
+            width: 100px;
+            height: 100px;
+            margin-right: 10px;
+            border-radius: 5px;
+        }
+        
+        .product-card:hover {
+            transform: scale(1.05);
+        }
+        
+        .product-card h3 {
+            margin: 0;
+            font-size: 1em;
+        }
+        
+        .product-card .price {
+            color: #d9534f;
+            font-size: 1.2em;
+        }
+        
+        .product-card .discount-info {
+            color: #5bc0de;
+            text-decoration: line-through;
+        }
+        
+        .product-card .timer {
+            font-size: 1em;
+            color: #5bc0de;
+        }
+        
+        .quantity-container {
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .quantity-container input {
+            width: 60px;
+            text-align: center;
+            margin-right: 10px;
+        }
+        
+        button {
+            background-color: orange;
+            border: none;
+            padding: 10px;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        
+        button:hover {
+            background-color: darkorange;
+        }
+        
+        .review-section {
+            margin: 40px 0;
+        }
+        
+        .review-card {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+        }
+        
+        .review-card h4 {
+            margin: 0 0 10px;
+        }
+        
+        .review-card .rating {
+            color: #f39c12;
+        }
+        
+        .review-form input,
+        .review-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        .review-form button {
+            background-color: orange;
+            border: none;
+            padding: 10px;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        
+        .review-form button:hover {
+            background-color: darkorange;
+        }
+        
+        #cart {
+            margin: 40px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+        
+        #cart h2 {
+            margin: 0 0 20px;
+        }
+        
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+        
+        .cart-item img {
+            width: 80px;
+            height: 80px;
+            margin-right: 10px;
+            border-radius: 5px;
+        }
+        
+        .cart-item-info {
+            flex: 1;
+        }
+        
+        .cart-item-info h3 {
+            margin: 0;
+            font-size: 1em;
+        }
+        
+        .cart-item-info p {
+            margin: 5px 0;
+        }
+        
+        .cart-item button {
+            background-color: red;
+            border: none;
+            color: white;
+            padding: 5px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        
+        .cart-item button:hover {
+            background-color: darkred;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Парфумерія</h1>
+        <p>Знайдіть ідеальний аромат для себе</p>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#products">Продукти</a></li>
+            <li><a href="#order">Оформити замовлення</a></li>
+            <li><a href="#reviews">Відгуки</a></li>
+            <li><a href="#cart">Корзина</a></li>
+        </ul>
+    </nav>
+    <div class="section" id="products">
+        <!-- Женская продукция -->
+        <div class="album" onclick="toggleProducts('women')">
+            <div class="album-header">Для жінок</div>
+            <div class="sub-album" id="women">
+                <!-- Продукты -->
+                <div class="product-card" data-product-name="Парфюм Carolina Herrera Good Girl" data-product-price="1500">
+                    <img src="images/girlparfume1.jpg" alt="Парфюм 1">
+                    <div>
+                        <h3>Парфюмированная вода Carolina Herrera Good Girl лицензия 80ml</h3>
+                        <p class="price">1800 грн</p>
+                        <p class="discount-info">1500 грн</p>
+                        <p class="timer" id="timer1">7 днів 23:45:30</p>
+                        <div class="quantity-container">
+                            <input type="number" min="1" value="1">
+                            <button onclick="addToCart('Парфюм Carolina Herrera Good Girl', 1500, 1)">Додати в корзину</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Другие товары -->
+            </div>
+        </div>
+
+        <!-- Мужская продукция -->
+        <div class="album" onclick="toggleProducts('men')">
+            <div class="album-header">Для чоловіків</div>
+            <div class="sub-album" id="men">
+                <!-- Продукты -->
+                <div class="product-card" data-product-name="Парфюм Dior Sauvage" data-product-price="2200">
+                    <img src="images/manparfume1.jpg" alt="Парфюм 1">
+                    <div>
+                        <h3>Парфюмированная вода Dior Sauvage лицензия 100ml</h3>
+                        <p class="price">2500 грн</p>
+                        <p class="discount-info">2200 грн</p>
+                        <p class="timer" id="timer2">7 днів 23:45:30</p>
+                        <div class="quantity-container">
+                            <input type="number" min="1" value="1">
+                            <button onclick="addToCart('Парфюм Dior Sauvage', 2200, 1)">Додати в корзину</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Другие товары -->
+            </div>
+        </div>
+    </div>
+
+    <div class="section" id="order">
+        <h2>Оформити замовлення</h2>
+        <form id="orderForm">
+            <label for="name">ПІБ:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="phone">Номер телефону:</label>
+            <input type="tel" id="phone" name="phone" required>
+            <label for="novaPoshta">Відділення Нова пошта:</label>
+            <input type="text" id="novaPoshta" name="novaPoshta" required>
+            <p>Оплата здійснюється тільки на відділення наложеним платежем.</p>
+            <button type="submit">Оформити замовлення</button>
+        </form>
+    </div>
+
+    <div class="section" id="reviews">
+        <h2>Відгуки</h2>
+        <div id="reviewList">
+            <!-- Відгуки -->
+            <div class="review-card">
+                <h4>Олена К.</h4>
+                <p class="rating">⭐⭐⭐⭐⭐</p>
+                <p>Прекрасний аромат! Дякую за швидку доставку.</p>
+            </div>
+            <!-- Инші відгуки -->
+        </div>
+        <div class="review-form">
+            <h3>Залишити відгук</h3>
+            <form id="reviewForm">
+                <input type="text" id="reviewName" name="reviewName" placeholder="Ваше ім'я" required>
+                <textarea id="reviewText" name="reviewText" placeholder="Ваш відгук" required></textarea>
+                <button type="submit">Надіслати відгук</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="section" id="cart">
+        <h2>Корзина</h2>
+        <div id="cartItems">
+            <!-- Товары в корзине -->
+            <div class="cart-item">
+                <img src="images/girlparfume1.jpg" alt="Парфюм 1">
+                <div class="cart-item-info">
+                    <h3>Парфюм Carolina Herrera Good Girl</h3>
+                    <p>Ціна: 1500 грн</p>
+                    <p>Кількість: <span id="cartQuantity1">1</span></p>
+                </div>
+                <button onclick="removeFromCart('Парфюм Carolina Herrera Good Girl')">Видалити</button>
+            </div>
+            <!-- Інші товари -->
+            <h3>Загальна вартість: <span id="totalPrice">1500 грн</span></h3>
+        </div>
+    </div>
+
+    <script>
+        function toggleProducts(id) {
+            const element = document.getElementById(id);
+            element.style.display = (element.style.display === 'none' || !element.style.display) ? 'block' : 'none';
+        }
+
+        let cart = {};
+
+        function addToCart(productName, price, quantity) {
+            if (!cart[productName]) {
+                cart[productName] = {
+                    price,
+                    quantity
+                };
+            } else {
+                cart[productName].quantity += quantity;
+            }
+            updateCart();
+        }
+
+        function removeFromCart(productName) {
+            delete cart[productName];
+            updateCart();
+        }
+
+        function updateCart() {
+            const cartItems = document.getElementById('cartItems');
+            const totalPriceElement = document.getElementById('totalPrice');
+            cartItems.innerHTML = '';
+            let totalPrice = 0;
+            for (const productName in cart) {
+                const {
+                    price,
+                    quantity
+                } = cart[productName];
+                cartItems.innerHTML += `
+                    <div class="cart-item">
+                        <img src="images/girlparfume1.jpg" alt="${productName}">
+                        <div class="cart-item-info">
+                            <h3>${productName}</h3>
+                            <p>Ціна: ${price} грн</p>
+                            <p>Кількість: <span id="cartQuantity1">${quantity}</span></p>
+                        </div>
+                        <button onclick="removeFromCart('${productName}')">Видалити</button>
+                    </div>
+                `;
+                totalPrice += price * quantity;
+            }
+            totalPriceElement.innerText = `${totalPrice} грн`;
+        }
+    </script>
+</body>
+
+</html>
